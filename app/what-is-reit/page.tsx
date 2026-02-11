@@ -6,8 +6,8 @@ export default function WhatIsReitPage() {
     return (
         <div className="flex flex-col min-h-screen">
             {/* Hero Section */}
-            <section className="relative py-20 md:py-32 overflow-hidden bg-muted/30">
-                <div className="container px-4 md:px-6 relative z-10">
+            <section className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center py-20 overflow-hidden bg-muted/30">
+                <div className="container px-4 md:px-6 relative z-10 w-full">
                     <div className="flex flex-col items-center text-center space-y-4 max-w-3xl mx-auto">
                         <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80">
                             Education Series
@@ -35,8 +35,8 @@ export default function WhatIsReitPage() {
             {/* Definition Section */}
             <section className="py-16 md:py-24">
                 <div className="container px-4 md:px-6">
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
-                        <div className="space-y-6">
+                    <div className="flex flex-col items-center justify-center gap-12 text-center w-full">
+                        <div className="space-y-6 max-w-3xl mx-auto flex flex-col items-center">
                             <h2 className="text-3xl font-bold tracking-tighter">The Basics</h2>
                             <p className="text-lg text-muted-foreground">
                                 A REIT is a company that owns, operates, or finances income-generating real estate. Modeled after mutual funds, REITs pool the capital of numerous investors.
@@ -44,7 +44,7 @@ export default function WhatIsReitPage() {
                             <p className="text-lg text-muted-foreground">
                                 This makes it possible for individual investors to earn dividends from real estate investments—without having to buy, manage, or finance any properties themselves.
                             </p>
-                            <div className="flex items-center gap-4 pt-4">
+                            <div className="flex items-center justify-center gap-4 pt-4">
                                 <div className="flex -space-x-4">
                                     {[1, 2, 3].map((i) => (
                                         <div key={i} className="w-10 h-10 rounded-full border-2 border-background bg-muted flex items-center justify-center text-xs font-bold">
@@ -57,21 +57,21 @@ export default function WhatIsReitPage() {
                                 </p>
                             </div>
                         </div>
-                        <div className="relative h-[400px] rounded-2xl bg-gradient-to-br from-muted to-muted/50 border p-8 flex items-center justify-center">
+                        <div className="relative h-[400px] w-full max-w-2xl rounded-2xl bg-gradient-to-br from-muted to-muted/50 border p-8 flex items-center justify-center shadow-sm">
                             <div className="grid grid-cols-2 gap-4 w-full max-w-md">
-                                <div className="bg-background p-6 rounded-xl shadow-sm border flex flex-col items-center text-center gap-2">
+                                <div className="bg-background p-6 rounded-xl shadow-sm border flex flex-col items-center text-center gap-2 hover-scale hover-glow">
                                     <Building2 className="h-8 w-8 text-primary" />
                                     <span className="font-semibold">Properties</span>
                                 </div>
-                                <div className="bg-background p-6 rounded-xl shadow-sm border flex flex-col items-center text-center gap-2">
+                                <div className="bg-background p-6 rounded-xl shadow-sm border flex flex-col items-center text-center gap-2 hover-scale hover-glow">
                                     <Coins className="h-8 w-8 text-primary" />
                                     <span className="font-semibold">Dividends</span>
                                 </div>
-                                <div className="bg-background p-6 rounded-xl shadow-sm border flex flex-col items-center text-center gap-2">
+                                <div className="bg-background p-6 rounded-xl shadow-sm border flex flex-col items-center text-center gap-2 hover-scale hover-glow">
                                     <TrendingUp className="h-8 w-8 text-primary" />
                                     <span className="font-semibold">Growth</span>
                                 </div>
-                                <div className="bg-background p-6 rounded-xl shadow-sm border flex flex-col items-center text-center gap-2">
+                                <div className="bg-background p-6 rounded-xl shadow-sm border flex flex-col items-center text-center gap-2 hover-scale hover-glow">
                                     <PieChart className="h-8 w-8 text-primary" />
                                     <span className="font-semibold">Liquidity</span>
                                 </div>
@@ -144,7 +144,7 @@ export default function WhatIsReitPage() {
 
 function Card({ title, icon, children }: { title: string, icon: React.ReactNode, children: React.ReactNode }) {
     return (
-        <div className="bg-background rounded-xl p-8 shadow-sm border hover:shadow-md transition-shadow">
+        <div className="bg-background rounded-xl p-8 shadow-sm border hover:shadow-md transition-shadow flex flex-col items-center text-center">
             {icon}
             <h3 className="text-xl font-bold mb-3">{title}</h3>
             <p className="text-muted-foreground leading-relaxed">

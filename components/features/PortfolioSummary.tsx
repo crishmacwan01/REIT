@@ -1,7 +1,23 @@
 import { ArrowUpRight, DollarSign, TrendingUp, Wallet } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-export function PortfolioSummary() {
+interface PortfolioSummaryProps {
+    totalValue: number
+    totalGain: number
+    totalGainPercent: number
+    dayGain: number
+    dayGainPercent: number
+    dividendYield: number
+}
+
+export function PortfolioSummary({
+    totalValue = 0,
+    totalGain = 0,
+    totalGainPercent = 0,
+    dayGain = 0,
+    dayGainPercent = 0,
+    dividendYield = 0
+}: Partial<PortfolioSummaryProps>) {
     return (
         <div className="grid gap-4 md:grid-cols-3 mb-8">
             <Card>
@@ -10,9 +26,9 @@ export function PortfolioSummary() {
                     <Wallet className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                    <div className="text-2xl font-bold">₹1,24,500.00</div>
-                    <p className="text-xs text-muted-foreground">
-                        +12.5% all time
+                    <div className="text-2xl font-bold">₹{totalValue.toLocaleString()}</div>
+                    <p className={`text-xs ${totalGain >= 0 ? "text-green-600" : "text-red-600"}`}>
+                        {totalGain >= 0 ? "+" : ""}{totalGainPercent.toFixed(2)}% all time
                     </p>
                 </CardContent>
             </Card>
@@ -22,9 +38,11 @@ export function PortfolioSummary() {
                     <TrendingUp className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                    <div className="text-2xl font-bold text-green-600">+₹1,240.50</div>
+                    <div className={cn("text-2xl font-bold", dayGain >= 0 ? "text-green-600" : "text-red-600")}>
+                        {dayGain >= 0 ? "+" : ""}₹{dayGain.toLocaleString()}
+                    </div>
                     <p className="text-xs text-muted-foreground">
-                        +1.01% today
+                        {dayGainPercent >= 0 ? "+" : ""}{dayGainPercent.toFixed(2)}% today
                     </p>
                 </CardContent>
             </Card>
@@ -34,7 +52,7 @@ export function PortfolioSummary() {
                     <DollarSign className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                    <div className="text-2xl font-bold">₹6,200.00</div>
+                    <div className="text-2xl font-bold">₹{dividendYield.toLocaleString()}</div>
                     <p className="text-xs text-muted-foreground">
                         ~5.2% annual yield
                     </p>
@@ -42,4 +60,8 @@ export function PortfolioSummary() {
             </Card>
         </div>
     )
+}
+
+function cn(classes: string, condition?: string) {
+    return classes + (condition ? " " + condition : "")
 }

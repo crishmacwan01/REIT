@@ -3,7 +3,7 @@
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const data = [
     { time: "09:30", price: 235.5 },
@@ -23,6 +23,13 @@ const data = [
 
 export function InstrumentChart() {
     const [timeframe, setTimeframe] = useState("1D")
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    if (!mounted) return <div className="h-[500px] w-full bg-muted/10 animate-pulse rounded-xl" />
 
     return (
         <Card className="h-[500px] flex flex-col">
@@ -67,7 +74,7 @@ export function InstrumentChart() {
                         />
                         <Tooltip
                             contentStyle={{ borderRadius: "8px", border: "none", boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)" }}
-                            formatter={(value: number) => [`₹${value.toFixed(2)}`, "Price"]}
+                            formatter={(value: any) => [`₹${(Number(value) || 0).toFixed(2)}`, "Price"]}
                         />
                         <Area
                             type="monotone"

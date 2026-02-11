@@ -41,7 +41,36 @@ const MOCK_HOLDINGS = [
     },
 ]
 
-export function HoldingsTable() {
+export interface HoldingItem {
+    symbol: string
+    name: string
+    qty: number
+    avgCost: number
+    lastPrice: number
+    dayChange: number
+    marketValue: number
+    pnl: number
+    pnlPercent: number
+}
+
+interface HoldingsTableProps {
+    holdings: HoldingItem[]
+}
+
+export function HoldingsTable({ holdings = [] }: HoldingsTableProps) {
+    if (holdings.length === 0) {
+        return (
+            <div className="rounded-md border bg-card p-8 text-center text-muted-foreground">
+                <p>No holdings found. Start by adding instruments to your portfolio.</p>
+                <div className="mt-4">
+                    <Button variant="outline" asChild>
+                        <Link href="/market">Explore Market</Link>
+                    </Button>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className="rounded-md border bg-card">
             <div className="p-6 border-b">
@@ -61,7 +90,7 @@ export function HoldingsTable() {
                         </tr>
                     </thead>
                     <tbody className="[&_tr:last-child]:border-0">
-                        {MOCK_HOLDINGS.map((item) => (
+                        {holdings.map((item) => (
                             <tr
                                 key={item.symbol}
                                 className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
@@ -80,14 +109,14 @@ export function HoldingsTable() {
                                         {item.dayChange > 0 ? "+" : ""}{item.dayChange}%
                                     </div>
                                 </td>
-                                <td className="p-4 align-middle text-right font-medium">₹{item.marketValue.toLocaleString()}</td>
+                                <td className="p-4 align-middle text-right font-medium">₹{item.marketValue?.toLocaleString()}</td>
                                 <td className={cn("p-4 align-middle text-right font-medium", item.pnl >= 0 ? "text-green-600" : "text-red-600")}>
-                                    {item.pnl > 0 ? "+" : ""}₹{item.pnl.toLocaleString()}
+                                    {item.pnl > 0 ? "+" : ""}₹{item.pnl?.toLocaleString()}
                                 </td>
                                 <td className={cn("p-4 align-middle text-right", item.pnlPercent >= 0 ? "text-green-600" : "text-red-600")}>
                                     <div className="flex items-center justify-end">
                                         {item.pnlPercent >= 0 ? <ArrowUpRight className="h-4 w-4 mr-1" /> : <ArrowDownRight className="h-4 w-4 mr-1" />}
-                                        {Math.abs(item.pnlPercent).toFixed(2)}%
+                                        {Math.abs(item.pnlPercent || 0).toFixed(2)}%
                                     </div>
                                 </td>
                             </tr>

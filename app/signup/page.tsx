@@ -17,11 +17,42 @@ export default function SignupPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsLoading(true)
-        // Simulate API call
-        setTimeout(() => {
+
+        try {
+            const response = await fetch("/api/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: (e.target as any).email.value,
+                    password: (e.target as any).password.value,
+                }),
+            })
+
+            if (!response.ok) {
+                const data = await response.json()
+                throw new Error(data.error || "Registration failed")
+            }
+
+            // Login immediately after signup
+            const result = await signIn("credentials", {
+                email: (e.target as any).email.value,
+                password: (e.target as any).password.value,
+                redirect: false,
+            })
+
+            if (result?.ok) {
+                window.location.href = "/"
+            } else {
+                alert("Registration successful! Please log in.")
+            }
+        } catch (error: any) {
+            console.error("Registration error:", error)
+            alert(error.message)
+        } finally {
             setIsLoading(false)
-            alert("Registration not implemented yet. Please use Google Login or the demo credentials on the login page.")
-        }, 1000)
+        }
     }
 
     return (
@@ -30,31 +61,15 @@ export default function SignupPage() {
                 <CardHeader className="space-y-1">
                     <CardTitle className="text-2xl font-bold text-center">Create an account</CardTitle>
                     <CardDescription className="text-center">
-                        Enter your email below to create your account
+                        Sign up to start your journey
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <form onSubmit={handleSubmit} className="space-y-4">
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="space-y-2">
-                                <label htmlFor="first-name" className="text-sm font-medium leading-none">First name</label>
-                                <Input id="first-name" placeholder="John" required />
-                            </div>
-                            <div className="space-y-2">
-                                <label htmlFor="last-name" className="text-sm font-medium leading-none">Last name</label>
-                                <Input id="last-name" placeholder="Doe" required />
-                            </div>
-                        </div>
-                        <div className="space-y-2">
-                            <label htmlFor="email" className="text-sm font-medium leading-none">Email</label>
-                            <Input id="email" type="email" placeholder="m@example.com" required />
-                        </div>
-                        <div className="space-y-2">
-                            <label htmlFor="password" className="text-sm font-medium leading-none">Password</label>
-                            <Input id="password" type="password" required />
-                        </div>
-                        <Button className="w-full" type="submit" disabled={isLoading}>
-                            {isLoading ? "Creating account..." : "Create account"}
+                        <Input name="email" placeholder="Email" type="email" required />
+                        <Input name="password" placeholder="Password" type="password" required />
+                        <Button className="w-full" disabled={isLoading}>
+                            {isLoading ? "Creating account..." : "Sign Up"}
                         </Button>
                     </form>
                     <div className="relative">
@@ -68,7 +83,10 @@ export default function SignupPage() {
                         </div>
                     </div>
                     <Button variant="outline" className="w-full" onClick={handleGoogleLogin}>
-                        Google
+                        <svg className="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
+                            <path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path>
+                        </svg>
+                        Continue with Google
                     </Button>
                 </CardContent>
                 <CardFooter className="flex justify-center">

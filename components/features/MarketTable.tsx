@@ -1,12 +1,28 @@
 "use client"
 
-import { ArrowUpRight, ArrowDownRight, MoreHorizontal } from "lucide-react"
+import { ArrowUpRight, ArrowDownRight, MoreHorizontal, Check, Plus, Eye } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { MOCK_INSTRUMENTS } from "@/lib/mock-data"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { addToWatchlist } from "@/app/actions/watchlist"
 
 export function MarketTable() {
+    const handleAddToWatchlist = async (symbol: string) => {
+        try {
+            await addToWatchlist(symbol)
+            alert(`Added ${symbol} to watchlist`)
+        } catch (error: any) {
+            alert(error.message || "Failed to add to watchlist")
+        }
+    }
+
     return (
         <div className="rounded-md border">
             <div className="relative w-full overflow-auto">
@@ -48,10 +64,26 @@ export function MarketTable() {
                                 <td className="p-4 align-middle text-right">{item.volume.toLocaleString()}</td>
                                 <td className="p-4 align-middle text-right">{item.yield}%</td>
                                 <td className="p-4 align-middle text-right">
-                                    <Button variant="ghost" size="icon">
-                                        <MoreHorizontal className="h-4 w-4" />
-                                        <span className="sr-only">Actions</span>
-                                    </Button>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button variant="ghost" size="icon">
+                                                <MoreHorizontal className="h-4 w-4" />
+                                                <span className="sr-only">Actions</span>
+                                            </Button>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent align="end">
+                                            <DropdownMenuItem asChild>
+                                                <Link href={`/instrument/${item.symbol}`} className="cursor-pointer flex items-center">
+                                                    <Eye className="mr-2 h-4 w-4" />
+                                                    View Details
+                                                </Link>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem onClick={() => handleAddToWatchlist(item.symbol)} className="cursor-pointer">
+                                                <Plus className="mr-2 h-4 w-4" />
+                                                Add to Watchlist
+                                            </DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
                                 </td>
                             </tr>
                         ))}
