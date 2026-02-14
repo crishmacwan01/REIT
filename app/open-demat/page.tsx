@@ -69,11 +69,11 @@ export default function OpenDematPage() {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-2">
                                         <label className="text-sm font-medium">First Name</label>
-                                        <Input placeholder="John" required />
+                                        <Input placeholder="Crish" required />
                                     </div>
                                     <div className="space-y-2">
                                         <label className="text-sm font-medium">Last Name</label>
-                                        <Input placeholder="Doe" required />
+                                        <Input placeholder="Macwan" required />
                                     </div>
                                 </div>
                                 <div className="space-y-2">
@@ -82,7 +82,7 @@ export default function OpenDematPage() {
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium">Email Address</label>
-                                    <Input type="email" placeholder="john@example.com" required />
+                                    <Input type="email" placeholder="crish@example.com" required />
                                 </div>
                             </form>
                         )}

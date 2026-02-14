@@ -7,7 +7,7 @@ export default function WhatIsReitPage() {
         <div className="flex flex-col min-h-screen">
             {/* Hero Section */}
             <section className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center py-20 overflow-hidden bg-muted/30">
-                <div className="container px-4 md:px-6 relative z-10 w-full">
+                <div className="container px-4 md:px-6 relative z-10 w-full mx-auto">
                     <div className="flex flex-col items-center text-center space-y-4 max-w-3xl mx-auto">
                         <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80">
                             Education Series
@@ -34,7 +34,7 @@ export default function WhatIsReitPage() {
 
             {/* Definition Section */}
             <section className="py-16 md:py-24">
-                <div className="container px-4 md:px-6">
+                <div className="container px-4 md:px-6 mx-auto">
                     <div className="flex flex-col items-center justify-center gap-12 text-center w-full">
                         <div className="space-y-6 max-w-3xl mx-auto flex flex-col items-center">
                             <h2 className="text-3xl font-bold tracking-tighter">The Basics</h2>
@@ -83,7 +83,7 @@ export default function WhatIsReitPage() {
 
             {/* Benefits Section */}
             <section className="py-16 md:py-24 bg-muted/30">
-                <div className="container px-4 md:px-6">
+                <div className="container px-4 md:px-6 mx-auto">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <h2 className="text-3xl font-bold tracking-tighter mb-4">Why Invest in REITs?</h2>
                         <p className="text-muted-foreground">
@@ -115,7 +115,7 @@ export default function WhatIsReitPage() {
 
             {/* How it Works Section */}
             <section id="how-it-works" className="py-16 md:py-24">
-                <div className="container px-4 md:px-6">
+                <div className="container px-4 md:px-6 mx-auto">
                     <h2 className="text-3xl font-bold tracking-tighter text-center mb-16">How It Works</h2>
                     <div className="grid md:grid-cols-4 gap-8 relative">
                         <Step number="1" title="You Invest" description="You buy shares of a REIT on the stock exchange, just like any other stock." />
@@ -128,7 +128,7 @@ export default function WhatIsReitPage() {
 
             {/* CTA Section */}
             <section className="py-20 bg-primary text-primary-foreground">
-                <div className="container px-4 md:px-6 text-center">
+                <div className="container px-4 md:px-6 text-center mx-auto">
                     <h2 className="text-3xl font-bold tracking-tighter mb-6">Ready to Start Your Journey?</h2>
                     <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
                         Explore the top performing REITs in the market and start building your real estate portfolio today.

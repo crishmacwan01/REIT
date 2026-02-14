@@ -23,7 +23,7 @@ export function Header() {
             <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4">
                 <div className="flex items-center gap-6">
                     <Link href="/" className="flex items-center space-x-2">
-                        <span className="text-xl font-bold text-primary">REITWatch</span>
+                        <span className="text-xl font-bold text-primary">PLUSfolio</span>
                     </Link>
                     <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
                         <Link href="/market" className="transition-colors hover:text-foreground">
