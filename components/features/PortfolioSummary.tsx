@@ -26,7 +26,7 @@ export function PortfolioSummary({
                     <Wallet className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                    <div className="text-2xl font-bold">₹{totalValue.toLocaleString()}</div>
+                    <div className="text-2xl font-bold">₹{totalValue.toLocaleString('en-IN')}</div>
                     <p className={`text-xs ${totalGain >= 0 ? "text-green-600" : "text-red-600"}`}>
                         {totalGain >= 0 ? "+" : ""}{totalGainPercent.toFixed(2)}% all time
                     </p>
@@ -39,7 +39,7 @@ export function PortfolioSummary({
                 </CardHeader>
                 <CardContent>
                     <div className={cn("text-2xl font-bold", dayGain >= 0 ? "text-green-600" : "text-red-600")}>
-                        {dayGain >= 0 ? "+" : ""}₹{dayGain.toLocaleString()}
+                        {dayGain >= 0 ? "+" : ""}₹{dayGain.toLocaleString('en-IN')}
                     </div>
                     <p className="text-xs text-muted-foreground">
                         {dayGainPercent >= 0 ? "+" : ""}{dayGainPercent.toFixed(2)}% today
@@ -52,7 +52,7 @@ export function PortfolioSummary({
                     <DollarSign className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                    <div className="text-2xl font-bold">₹{dividendYield.toLocaleString()}</div>
+                    <div className="text-2xl font-bold">₹{dividendYield.toLocaleString('en-IN')}</div>
                     <p className="text-xs text-muted-foreground">
                         ~5.2% annual yield
                     </p>

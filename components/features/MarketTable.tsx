@@ -61,7 +61,7 @@ export function MarketTable() {
                                         {Math.abs(item.changePercent).toFixed(2)}%
                                     </div>
                                 </td>
-                                <td className="p-4 align-middle text-right">{item.volume.toLocaleString()}</td>
+                                <td className="p-4 align-middle text-right">{item.volume.toLocaleString('en-IN')}</td>
                                 <td className="p-4 align-middle text-right">{item.yield}%</td>
                                 <td className="p-4 align-middle text-right">
                                     <DropdownMenu>

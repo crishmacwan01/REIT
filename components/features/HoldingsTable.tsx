@@ -109,9 +109,9 @@ export function HoldingsTable({ holdings = [] }: HoldingsTableProps) {
                                         {item.dayChange > 0 ? "+" : ""}{item.dayChange}%
                                     </div>
                                 </td>
-                                <td className="p-4 align-middle text-right font-medium">₹{item.marketValue?.toLocaleString()}</td>
+                                <td className="p-4 align-middle text-right font-medium">₹{item.marketValue?.toLocaleString('en-IN')}</td>
                                 <td className={cn("p-4 align-middle text-right font-medium", item.pnl >= 0 ? "text-green-600" : "text-red-600")}>
-                                    {item.pnl > 0 ? "+" : ""}₹{item.pnl?.toLocaleString()}
+                                    {item.pnl > 0 ? "+" : ""}₹{item.pnl?.toLocaleString('en-IN')}
                                 </td>
                                 <td className={cn("p-4 align-middle text-right", item.pnlPercent >= 0 ? "text-green-600" : "text-red-600")}>
                                     <div className="flex items-center justify-end">
