@@ -71,6 +71,12 @@
   }
 }
 
+@layer components {
+  .container {
+    @apply px-4 md:px-6 mx-auto;
+  }
+}
+
 body {
   background-color: var(--background);
   font-family: var(--font-sans);
