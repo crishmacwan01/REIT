@@ -6,7 +6,7 @@ export function Footer() {
             <div className="container mx-auto max-w-screen-2xl py-8 px-4 md:py-12">
                 <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
                     <div>
-                        <h3 className="text-lg font-semibold text-primary mb-4">REITWatch</h3>
+                        <h3 className="text-lg font-semibold text-primary mb-4">PlusFlio</h3>
                         <p className="text-sm text-muted-foreground">
                             Real-time tracking and analysis for Indian REITs and EITs.
                         </p>
